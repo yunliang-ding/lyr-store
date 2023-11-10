@@ -1,0 +1,17 @@
+#npmignore
+!/dist
+/src
+/docs
+/mock
+/.dumi
+/.github
+/docs-dist
+/.editorconfig                                      
+/.eslintignore                                      
+/.eslintrc.js                                       
+/.fatherrc.ts                                       
+/.prettierignore                                    
+/.prettierrc.js                                      
+/.umirc.ts
+tsconfig.json
+typings.d.ts
