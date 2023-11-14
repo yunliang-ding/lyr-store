@@ -27,9 +27,11 @@ import { CreateStore, useStore } from 'react-core-form-store';
 
 const store = CreateStore<{
   count: number;
+  age: number;
   addCount(): void;
 }>({
   count: 1,
+  age: 12,
   async addCount(){
     // await new Promise(res => setTimeout(res, 1000))
     this.count += 1;
@@ -37,13 +39,17 @@ const store = CreateStore<{
 });
 
 export default () => {
-  const { count, addCount } = useStore(store);
+  const { age, count, addCount } = useStore(store);
+  console.log('render...')
   return (
     <div>
       {count}
+      <br />
+      {age}
       <button onClick={async () => {
-        // store.count += 1;
-        await addCount()
+        store.count += 1;
+        store.age += 1;
+        // await addCount()
       }}>
         添加
       </button>
