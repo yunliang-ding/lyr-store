@@ -27,7 +27,6 @@ class InitStore {
   subscribe = (listener) => {
     this.listeners.add(listener);
     this.useCount ++;
-    console.log(this.useCount);
     return () => {
       this.useCount --;
       this.listeners.delete(listener);
