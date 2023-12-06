@@ -22,37 +22,39 @@ nav:
 ## 使用 CreateStore 创建 全局状态管理
 
 ```tsx
-import React from 'react';
-import { CreateStore, useStore } from 'react-core-form-store';
-
-const store = CreateStore<{
-  count: number;
-  age: number;
-  addCount(): void;
-}>({
-  count: 1,
-  age: 12,
-  async addCount(){
-    // await new Promise(res => setTimeout(res, 1000))
-    this.count += 1;
-  }
-});
+import React, { useState } from "react";
+import Demo1 from "./demo1";
+import Demo2 from "./demo2";
+import Demo3 from "./demo3";
 
 export default () => {
-  const { age, count, addCount } = useStore(store);
-  console.log('render...')
+  const [show, setShow] = useState(true);
+  const [remove, setRemove] = useState(false);
   return (
     <div>
-      {count}
-      <br />
-      {age}
-      <button onClick={async () => {
-        store.count += 1;
-        store.age += 1;
-        // await addCount()
-      }}>
-        添加
+      <button
+        onClick={() => {
+          setRemove(!remove);
+        }}
+      >
+        模拟卸载
       </button>
+      &nbsp;&nbsp;
+      <button
+        onClick={() => {
+          setShow(!show);
+        }}
+      >
+        模拟切换
+      </button>
+      {!remove && (
+        <>
+          <br />
+          <br />
+          {show ? <Demo1 /> : <Demo2 />}
+          <Demo3 />
+        </>
+      )}
     </div>
   );
 };
