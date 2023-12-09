@@ -1,9 +1,10 @@
 import React from "react";
-import { useStore } from "react-core-form-store";
+// import { useStore } from "react-core-form-store";
 import { store } from "./store";
 
 export default () => {
-  const { age } = useStore(store);
+  // const { age } = useStore(store)
+  const { age } = store.use();
   console.log("demo1 render...");
   return (
     <div>

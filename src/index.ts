@@ -26,12 +26,12 @@ class InitStore {
   };
   subscribe = (listener) => {
     this.listeners.add(listener);
-    this.useCount ++;
+    this.useCount++;
     return () => {
-      this.useCount --;
+      this.useCount--;
       this.listeners.delete(listener);
       /** 当所有用到了 useStore 的组件，全部都卸载了，就将 store 自动还原初始状态 */
-      if(this.useCount === 0){
+      if (this.useCount === 0) {
         this.state = this.restore; // 还原下
       }
     };
@@ -39,14 +39,27 @@ class InitStore {
   getSnapshot = () => {
     return this.state;
   };
+  /** 提供 use代替 useStore */
+  use() {
+    return useStore(this);
+  }
 }
 
-export const CreateStore = <T>(initialStore: T & ThisType<T>) => {
+/** 不可触达属性 */
+type UnreachableType = {
+  subscribe?: never;
+  getSnapshot?: never;
+  use?: never;
+};
+
+export const CreateStore = <T>(
+  initialStore: (T & ThisType<T>) & UnreachableType
+) => {
   const initStore = new InitStore(initialStore);
   /** 对 initStore 取值进行监听 */
   const store: InitProps = new Proxy(initStore, {
     get: (target, propKey, receiver) => {
-      if (!["subscribe", "getSnapshot"].includes(propKey as string)) {
+      if (!["subscribe", "getSnapshot", "use"].includes(propKey as string)) {
         return initStore.state[propKey];
       }
       return Reflect.get(target, propKey, receiver);
@@ -59,7 +72,9 @@ export const CreateStore = <T>(initialStore: T & ThisType<T>) => {
       return Reflect.set(target, propKey, value, receiver);
     },
   });
-  return store as T;
+  return store as T & {
+    use: () => T;
+  };
 };
 
 export const useStore = <T>(store: T & InitProps): T => {
