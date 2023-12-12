@@ -1,9 +1,8 @@
 import React from "react";
-import { useStore } from "react-core-form-store";
 import { store } from "./store";
 
 export default () => {
-  const { count } = useStore(store);
+  const { count } = store.use();
   console.log("demo2 render...");
   return (
     <div>

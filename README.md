@@ -6,9 +6,9 @@ React 状态管理库
 
 ```tsx
 import React from 'react';
-import { CreateStore, useStore } from 'react-core-form-store';
+import { create, useStore } from 'react-core-form-store';
 
-const store = CreateStore<{
+const store = create<{
   count: number;
   addCount(): void;
 }>({

@@ -19,7 +19,7 @@ nav:
   </a>
 </p>
 
-## 使用 CreateStore 创建 全局状态管理
+## 使用 create 创建 全局状态管理
 
 ```tsx
 import React, { useState } from "react";

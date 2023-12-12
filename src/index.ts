@@ -45,16 +45,7 @@ class InitStore {
   }
 }
 
-/** 不可触达属性 */
-type UnreachableType = {
-  subscribe?: never;
-  getSnapshot?: never;
-  use?: never;
-};
-
-export const CreateStore = <T>(
-  initialStore: (T & ThisType<T>) & UnreachableType
-) => {
+export const create = <T>(initialStore: T & ThisType<T>) => {
   const initStore = new InitStore(initialStore);
   /** 对 initStore 取值进行监听 */
   const store: InitProps = new Proxy(initStore, {
@@ -77,7 +68,7 @@ export const CreateStore = <T>(
   };
 };
 
-export const useStore = <T>(store: T & InitProps): T => {
+const useStore = <T>(store: T & InitProps): T => {
   /** */
   const initStore = useSyncExternalStore(store.subscribe, store.getSnapshot);
   Object.keys(initStore).forEach((key) => {
