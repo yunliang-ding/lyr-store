@@ -2,7 +2,7 @@
   "name": "react-core-form-store",
   "description": "状态管理",
   "author": "yunliang-ding",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
