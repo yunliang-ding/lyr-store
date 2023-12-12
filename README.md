@@ -6,7 +6,7 @@ React 状态管理库
 
 ```tsx
 import React from 'react';
-import { create, useStore } from 'react-core-form-store';
+import { create } from 'react-core-form-store';
 
 const store = create<{
   count: number;
@@ -14,19 +14,18 @@ const store = create<{
 }>({
   count: 1,
   async addCount(){
-    // await new Promise(res => setTimeout(res, 1000))
     this.count += 1;
   }
 });
 
 export default () => {
-  const { count, addCount } = useStore(store);
+  const { count, addCount } = store.use();
   return (
     <div>
       {count}
       <button onClick={async () => {
-        // store.count += 1;
-        await addCount()
+        // store.addCount();
+        store.count += 1;
       }}>
         添加
       </button>
