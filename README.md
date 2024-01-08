@@ -1,4 +1,4 @@
-# react-core-form-store
+# lyr-store
 
 React 状态管理库
 
@@ -6,7 +6,7 @@ React 状态管理库
 
 ```tsx
 import React from 'react';
-import { create } from 'react-core-form-store';
+import { create } from 'lyr-store';
 
 const store = create<{
   count: number;

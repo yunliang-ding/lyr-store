@@ -1,8 +1,8 @@
 {
-  "name": "react-core-form-store",
+  "name": "lyr-store",
   "description": "状态管理",
   "author": "yunliang-ding",
-  "version": "0.0.5",
+  "version": "0.0.1",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -13,7 +13,7 @@
   "typings": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yunliang-ding/react-core-form-store"
+    "url": "https://github.com/yunliang-ding/lyr-store"
   },
   "dependencies": {
     "lodash.clonedeep": "4.5.0",

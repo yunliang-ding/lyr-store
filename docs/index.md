@@ -8,14 +8,14 @@ nav:
 ---
 
 <div style="display:flex;align-items:center;margin-bottom:24px">
-  <span style="font-size:30px;font-weight:600;display:inline-block;">react-core-form-store</span>
+  <span style="font-size:30px;font-weight:600;display:inline-block;">lyr-store</span>
 </div>
 <p style="display:flex;justify-content:space-between;width:220px">
-  <a href="https://npmmirror.com/package/react-core-form-store">
-    <img alt="npm" src="http://center.yunliang.cloud/npm/version?package=react-core-form-store">
+  <a href="https://npmmirror.com/package/lyr-store">
+    <img alt="npm" src="http://center.yunliang.cloud/npm/version?package=lyr-store">
   </a>
-  <a href="https://npmmirror.com/package/react-core-form-store">
-    <img alt="npm" src="http://center.yunliang.cloud/npm/downloads?package=react-core-form-store">
+  <a href="https://npmmirror.com/package/lyr-store">
+    <img alt="npm" src="http://center.yunliang.cloud/npm/downloads?package=lyr-store">
   </a>
 </p>
 
