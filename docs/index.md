@@ -7,18 +7,6 @@ nav:
   order: 1
 ---
 
-<div style="display:flex;align-items:center;margin-bottom:24px">
-  <span style="font-size:30px;font-weight:600;display:inline-block;">lyr-store</span>
-</div>
-<p style="display:flex;justify-content:space-between;width:220px">
-  <a href="https://npmmirror.com/package/lyr-store">
-    <img alt="npm" src="http://center.yunliang.cloud/npm/version?package=lyr-store">
-  </a>
-  <a href="https://npmmirror.com/package/lyr-store">
-    <img alt="npm" src="http://center.yunliang.cloud/npm/downloads?package=lyr-store">
-  </a>
-</p>
-
 ## 使用 reactive 实现单一组件状态管理
 
 ```tsx
@@ -27,26 +15,32 @@ import { reactive } from "lyr-store";
 
 export default () => {
   const state = reactive({
-    age: 0,
     count: 0,
+    age: 0,
+    user: {
+      baseInfo: {
+        age: 0,
+      }
+    },
   });
+  console.log('render', state);
   return (
     <>
       <div>
-        {state.age}
+        count: {state.count}
         <button
           onClick={() => {
-            state.age++;
+            state.count++;
           }}
         >
           +1
         </button>
       </div>
       <div>
-        {state.count}
+        age: {state.user.baseInfo.age}
         <button
           onClick={() => {
-            state.count++;
+            state.user.baseInfo.age++;
           }}
         >
           +1
