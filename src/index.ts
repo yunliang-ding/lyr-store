@@ -1,3 +1,4 @@
+import { useState } from "react";
 import cloneDeep from "lodash.clonedeep";
 import useSyncExternalStoreExports from "use-sync-external-store/shim";
 
@@ -77,4 +78,22 @@ export const create = <T extends BadProp<T>>(initialStore: T & ThisType<T>) => {
   return store as T & {
     use: () => T;
   };
+};
+
+/** 可替换 useState 进行更新 */
+export const reactive = (initialState: any) => {
+  const [state, setState] = useState(initialState);
+  return new Proxy(state, {
+    /** 对 state 赋值进行监听 */
+    set: (target, propKey, value, receiver) => {
+      // 数据发生更新
+      if (state[propKey] !== value) {
+        setState({
+          ...state,
+          [propKey]: value,
+        });
+      }
+      return Reflect.set(target, propKey, value, receiver);
+    },
+  });
 };

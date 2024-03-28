@@ -19,7 +19,45 @@ nav:
   </a>
 </p>
 
-## 使用 create 创建 全局状态管理
+## 使用 reactive 实现单一组件状态管理
+
+```tsx
+import React from "react";
+import { reactive } from "lyr-store";
+
+export default () => {
+  const state = reactive({
+    age: 0,
+    count: 0,
+  });
+  return (
+    <>
+      <div>
+        {state.age}
+        <button
+          onClick={() => {
+            state.age++;
+          }}
+        >
+          +1
+        </button>
+      </div>
+      <div>
+        {state.count}
+        <button
+          onClick={() => {
+            state.count++;
+          }}
+        >
+          +1
+        </button>
+      </div>
+    </>
+  );
+};
+```
+
+## 使用 create 实现全局状态管理
 
 ```tsx
 import React, { useState } from "react";
