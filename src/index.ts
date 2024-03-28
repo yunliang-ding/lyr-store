@@ -4,6 +4,7 @@ import useSyncExternalStoreExports from "use-sync-external-store/shim";
 const { useSyncExternalStore } = useSyncExternalStoreExports;
 
 interface InitProps {
+  use?: any;
   state?: any;
   subscribe?: any;
   getSnapshot?: any;
@@ -39,13 +40,23 @@ class InitStore {
   getSnapshot = () => {
     return this.state;
   };
-  /** 提供 use代替 useStore */
   use() {
-    return useStore(this);
+    const initStore = useSyncExternalStore(this.subscribe, this.getSnapshot);
+    Object.keys(initStore).forEach((key) => {
+      if (typeof initStore[key] === "function") {
+        initStore[key] = initStore[key].bind(this); // bind this
+      }
+    });
+    return initStore;
   }
 }
 
-export const create = <T>(initialStore: T & ThisType<T>) => {
+/** 提示一些内部属性名不能被使用 */
+type BadProp<T> = {
+  [K in keyof T]: K extends keyof InitProps ? never : T[K];
+};
+
+export const create = <T extends BadProp<T>>(initialStore: T & ThisType<T>) => {
   const initStore = new InitStore(initialStore);
   /** 对 initStore 取值进行监听 */
   const store: InitProps = new Proxy(initStore, {
@@ -66,15 +77,4 @@ export const create = <T>(initialStore: T & ThisType<T>) => {
   return store as T & {
     use: () => T;
   };
-};
-
-const useStore = <T>(store: T & InitProps): T => {
-  /** */
-  const initStore = useSyncExternalStore(store.subscribe, store.getSnapshot);
-  Object.keys(initStore).forEach((key) => {
-    if (typeof initStore[key] === "function") {
-      initStore[key] = initStore[key].bind(store); // bind this
-    }
-  });
-  return initStore as T;
 };
