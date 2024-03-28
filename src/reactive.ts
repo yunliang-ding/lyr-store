@@ -37,7 +37,7 @@ const observe = (initialState = {}, cb = (payload = {}) => {}, path = []) => {
 };
 
 /** 可替换 useState 进行更新 */
-export default (initialState: any) => {
+export default <T>(initialState: T) => {
   const [state, setState] = useState(initialState);
   return observe(state, (payload) => {
     // 更新 view
@@ -45,5 +45,5 @@ export default (initialState: any) => {
     setState({
       ...state,
     });
-  });
+  }) as T;
 };
