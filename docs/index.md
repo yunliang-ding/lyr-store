@@ -7,23 +7,70 @@ nav:
   order: 1
 ---
 
-## 使用 reactive 实现单一组件状态管理
+<div style="display:flex;align-items:center;margin-bottom:24px">
+  <span style="font-size:30px;font-weight:600;display:inline-block;">lyr-hooks</span>
+</div>
+<p style="display:flex;justify-content:space-between;width:220px">
+  <a href="https://npmmirror.com/package/lyr-hooks">
+    <img alt="npm" src="https://center.yunliang.cloud/npm/version?package=lyr-hooks">
+  </a>
+  <a href="https://npmmirror.com/package/lyr-hooks">
+    <img alt="npm" src="https://center.yunliang.cloud/npm/downloads?package=lyr-hooks">
+  </a>
+</p>
+
+## useUpdateEffect
+
+<Alert>
+  用法等同于 useEffect，但是会忽略首次执行，只在依赖更新时执行。
+</Alert>
 
 ```tsx
 import React from "react";
-import { reactive } from "lyr-store";
+import { useUpdateEffect } from "lyr-hooks";
 
 export default () => {
-  const state = reactive({
+  const [age, setAge] = React.useState(0);
+  useUpdateEffect(() => {
+    console.log("new age ->", age);
+  }, [age]);
+  return (
+    <div>
+      age: {age}
+      <button
+        onClick={() => {
+          setAge(age + 1);
+        }}
+      >
+        +1
+      </button>
+    </div>
+  );
+};
+```
+
+## useReactive
+
+<Alert>
+  提供一种数据响应式的操作体验，定义数据状态不需要写useState，直接修改属性即可刷新视图。
+</Alert>
+
+```tsx
+import React from "react";
+import { useReactive } from "lyr-hooks";
+
+export default () => {
+  const state = useReactive({
     count: 0,
     age: 0,
+    list: [1, 2, 3, 4, 5],
     user: {
       baseInfo: {
         age: 0,
-      }
+      },
     },
   });
-  console.log('render', state);
+  console.log("state ->", state);
   return (
     <>
       <div>
@@ -46,12 +93,26 @@ export default () => {
           +1
         </button>
       </div>
+      <div>
+        list: {state.list.toString()}
+        <button
+          onClick={() => {
+            state.list.push(100);
+          }}
+        >
+          push
+        </button>
+      </div>
     </>
   );
 };
 ```
 
-## 使用 create 实现全局状态管理
+## create
+
+<Alert>
+  最新 React 全局状态管理库
+</Alert>
 
 ```tsx
 import React, { useState } from "react";

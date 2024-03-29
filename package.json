@@ -1,8 +1,8 @@
 {
-  "name": "lyr-store",
-  "description": "状态管理",
+  "name": "lyr-hooks",
+  "description": "react hooks 库",
   "author": "yunliang-ding",
-  "version": "0.0.3",
+  "version": "0.0.1",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -13,7 +13,7 @@
   "typings": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yunliang-ding/lyr-store"
+    "url": "https://github.com/yunliang-ding/lyr-hooks"
   },
   "dependencies": {
     "lodash.clonedeep": "4.5.0",
