@@ -1,7 +1,7 @@
 import { defineConfig } from 'dumi';
 
 export default defineConfig({
-  title: '状态管理',
+  title: 'Hooks',
   favicon:
     'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/assets/favicon.ico',
   logo: 'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/assets/favicon.ico',
