@@ -19,6 +19,59 @@ nav:
   </a>
 </p>
 
+## useRefresh
+
+<Alert>
+  useRefresh 会返回一个函数，调用该函数会强制组件重新渲染。
+</Alert>
+
+```tsx
+import React from "react";
+import { useRefresh } from "lyr-hooks";
+
+export default () => {
+  const refresh = useRefresh();
+  return (
+    <div>
+      now: {Date.now()}
+      <button onClick={refresh}>刷新</button>
+    </div>
+  );
+};
+```
+
+## useFullscreen
+
+<Alert>
+  管理 DOM 全屏的 Hook
+</Alert>
+
+```tsx
+import React, { useRef } from 'react';
+import { useFullscreen } from 'lyr-hooks';
+
+export default () => {
+  const ref = useRef(null);
+  const [isFullscreen, { enterFullscreen, exitFullscreen, toggleFullscreen }] = useFullscreen(ref);
+  return (
+    <div ref={ref} style={{ background: 'white' }}>
+      <div style={{ marginBottom: 16 }}>{isFullscreen ? 'Fullscreen' : 'Not fullscreen'}</div>
+      <div>
+        <button type="button" onClick={enterFullscreen}>
+          enterFullscreen
+        </button>
+        <button type="button" onClick={exitFullscreen} style={{ margin: '0 8px' }}>
+          exitFullscreen
+        </button>
+        <button type="button" onClick={toggleFullscreen}>
+          toggleFullscreen
+        </button>
+      </div>
+    </div>
+  );
+};
+```
+
 ## useUpdateEffect
 
 <Alert>

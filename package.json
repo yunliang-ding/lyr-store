@@ -2,7 +2,7 @@
   "name": "lyr-hooks",
   "description": "react hooks 库",
   "author": "yunliang-ding",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -17,7 +17,8 @@
   },
   "dependencies": {
     "lodash.clonedeep": "4.5.0",
-    "use-sync-external-store": "^1.2.0"
+    "use-sync-external-store": "^1.2.0",
+    "screenfull": "6.0.2"
   },
   "peerDependencies": {
     "react": ">=17.0.2",

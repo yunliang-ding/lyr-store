@@ -1,8 +1,9 @@
 /**
  * 参考 a-hooks useReactive
  */
-import { useRef, useState, useCallback } from "react";
+import { useRef } from "react";
 import type { DependencyList } from "react";
+import useRefresh from "./use-refresh";
 
 const isObject = (type) =>
   Object.prototype.toString.call(type) === "[object Object]";
@@ -16,11 +17,6 @@ const depsAreSame = (
     if (!Object.is(oldDeps[i], deps[i])) return false;
   }
   return true;
-};
-
-const useUpdate = () => {
-  const [, setState] = useState({});
-  return useCallback(() => setState({}), []);
 };
 
 const useCreation = <T>(factory: () => T, deps: DependencyList) => {
@@ -87,11 +83,11 @@ function observer<T extends Record<string, any>>(
 }
 
 export default <S extends Record<string, any>>(initialState: S): S  => {
-  const update = useUpdate();
+  const refresh = useRefresh();
   const stateRef = useRef<S>(initialState);
   const state = useCreation(() => {
     return observer(stateRef.current, () => {
-      update();
+      refresh();
     });
   }, []);
 
