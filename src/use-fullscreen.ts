@@ -51,7 +51,7 @@ export interface Options {
   pageFullscreen?: boolean | PageFullscreenOptions;
 }
 
-const useFullscreen = (target: BasicTarget, options?: Options) => {
+export default (target: BasicTarget, options?: Options) => {
   const { onExit, onEnter, pageFullscreen = false } = options || {};
   const { className = "ahooks-page-fullscreen", zIndex = 999999 } =
     isBoolean(pageFullscreen) || !pageFullscreen ? {} : pageFullscreen;
@@ -192,5 +192,3 @@ const useFullscreen = (target: BasicTarget, options?: Options) => {
     },
   ] as const;
 };
-
-export default useFullscreen;
