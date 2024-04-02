@@ -164,8 +164,10 @@ export default () => {
 ## create
 
 <Alert>
-  最新 React 全局状态管理库
+  React 全局状态管理库
 </Alert>
+
+- ✨ 思路参看 [resy](https://github.sheincorp.cn/lsbFlying/resy)，感谢文木
 
 ```tsx
 import React, { useState } from "react";
