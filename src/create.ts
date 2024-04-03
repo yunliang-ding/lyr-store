@@ -4,12 +4,12 @@ import useSyncExternalStoreExports from "use-sync-external-store/shim";
 const { useSyncExternalStore } = useSyncExternalStoreExports;
 
 interface InitProps {
-  use?: any;
   state?: any;
   subscribe?: any;
   getSnapshot?: any;
   dispatch?: any;
   listeners?: any;
+  useSnapshot?: any;
 }
 
 class InitStore {
@@ -40,7 +40,7 @@ class InitStore {
   getSnapshot = () => {
     return this.state;
   };
-  use() {
+  useSnapshot() {
     const initStore = useSyncExternalStore(this.subscribe, this.getSnapshot);
     Object.keys(initStore).forEach((key) => {
       if (typeof initStore[key] === "function") {
@@ -61,7 +61,7 @@ export default <T extends BadProp<T>>(initialStore: T & ThisType<T>) => {
   /** 对 initStore 取值进行监听 */
   const store: InitProps = new Proxy(initStore, {
     get: (target, propKey, receiver) => {
-      if (!["subscribe", "getSnapshot", "use"].includes(propKey as string)) {
+      if (!["subscribe", "getSnapshot", "useSnapshot"].includes(propKey as string)) {
         return initStore.state[propKey];
       }
       return Reflect.get(target, propKey, receiver);
@@ -75,6 +75,6 @@ export default <T extends BadProp<T>>(initialStore: T & ThisType<T>) => {
     },
   });
   return store as T & {
-    use: () => T;
+    useSnapshot: () => T;
   };
 };

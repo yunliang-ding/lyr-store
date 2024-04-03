@@ -2,7 +2,7 @@ import React from "react";
 import { store } from "./store";
 
 export default () => {
-  const { age } = store.use();
+  const { age } = store.useSnapshot();
   console.log("demo1 render...");
   return (
     <div>

@@ -2,7 +2,7 @@ import React from "react";
 import { store } from "./store";
 
 export default () => {
-  const { count, addCount } = store.use();
+  const { count, addCount } = store.useSnapshot();
   console.log("demo2 render...");
   return (
     <div>
