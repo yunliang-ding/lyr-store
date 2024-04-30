@@ -12,10 +12,10 @@ nav:
 </div>
 <p style="display:flex;justify-content:space-between;width:220px">
   <a href="https://npmmirror.com/package/lyr-hooks">
-    <img alt="npm" src="https://center.yunliang.cloud/npm/version?package=lyr-hooks">
+    <img alt="npm" src="https://img.shields.io/npm/dw/lyr-hooks">
   </a>
   <a href="https://npmmirror.com/package/lyr-hooks">
-    <img alt="npm" src="https://center.yunliang.cloud/npm/downloads?package=lyr-hooks">
+    <img alt="NPM downloads" src="https://img.shields.io/npm/v/lyr-hooks.svg">
   </a>
 </p>
 
