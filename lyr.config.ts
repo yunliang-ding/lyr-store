@@ -46,5 +46,31 @@ export default defineConfig({
       label: '介绍',
       path: '/',
     },
+    {
+      label: '组件',
+      path: '/components',
+      children: [
+        {
+          label: 'useRefesh',
+          path: '/components/use-refresh',
+        },
+        {
+          label: 'useUpdateEffect',
+          path: '/components/use-update-effect',
+        },
+        {
+          label: 'useFullscreen',
+          path: '/components/use-fullscreen',
+        },
+        {
+          label: 'useReactive',
+          path: '/components/use-reactive',
+        },
+        {
+          label: 'create',
+          path: '/components/create',
+        },
+      ],
+    },
   ],
 });
