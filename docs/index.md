@@ -1,32 +1,8 @@
----
-order: 1
-title: 介绍
-toc: menu
-nav:
-  title: 组件
-  order: 1
----
-
-<div style="display:flex;align-items:center;margin-bottom:24px">
-  <span style="font-size:30px;font-weight:600;display:inline-block;">lyr-hooks</span>
-</div>
-<p style="display:flex;justify-content:space-between;width:220px">
-  <a href="https://npmmirror.com/package/lyr-hooks">
-    <img alt="npm" src="https://img.shields.io/npm/dw/lyr-hooks">
-  </a>
-  <a href="https://npmmirror.com/package/lyr-hooks">
-    <img alt="NPM downloads" src="https://img.shields.io/npm/v/lyr-hooks.svg">
-  </a>
-</p>
-
 ## useRefresh
 
-<Alert>
-  useRefresh 会返回一个函数，调用该函数会强制组件重新渲染。
-</Alert>
+### useRefresh 会返回一个函数，调用该函数会强制组件重新渲染。
 
-```tsx
-import React from "react";
+```tsx | react
 import { useRefresh } from "lyr-hooks";
 
 export default () => {
@@ -42,25 +18,30 @@ export default () => {
 
 ## useFullscreen
 
-<Alert>
-  管理 DOM 全屏的 Hook
-</Alert>
+### 管理 DOM 全屏的 Hook
 
-```tsx
-import React, { useRef } from 'react';
-import { useFullscreen } from 'lyr-hooks';
+```tsx | react
+import { useRef } from "react";
+import { useFullscreen } from "lyr-hooks";
 
 export default () => {
   const ref = useRef(null);
-  const [isFullscreen, { enterFullscreen, exitFullscreen, toggleFullscreen }] = useFullscreen(ref);
+  const [isFullscreen, { enterFullscreen, exitFullscreen, toggleFullscreen }] =
+    useFullscreen(ref);
   return (
-    <div ref={ref} style={{ background: 'white' }}>
-      <div style={{ marginBottom: 16 }}>{isFullscreen ? 'Fullscreen' : 'Not fullscreen'}</div>
+    <div ref={ref} style={{ background: "white" }}>
+      <div style={{ marginBottom: 16 }}>
+        {isFullscreen ? "Fullscreen" : "Not fullscreen"}
+      </div>
       <div>
         <button type="button" onClick={enterFullscreen}>
           enterFullscreen
         </button>
-        <button type="button" onClick={exitFullscreen} style={{ margin: '0 8px' }}>
+        <button
+          type="button"
+          onClick={exitFullscreen}
+          style={{ margin: "0 8px" }}
+        >
           exitFullscreen
         </button>
         <button type="button" onClick={toggleFullscreen}>
@@ -74,12 +55,9 @@ export default () => {
 
 ## useUpdateEffect
 
-<Alert>
-  用法等同于 useEffect，但是会忽略首次执行，只在依赖更新时执行。
-</Alert>
+### 用法等同于 useEffect，但是会忽略首次执行，只在依赖更新时执行。
 
-```tsx
-import React from "react";
+```tsx | react
 import { useUpdateEffect } from "lyr-hooks";
 
 export default () => {
@@ -104,12 +82,9 @@ export default () => {
 
 ## useReactive
 
-<Alert>
-  提供一种数据响应式的操作体验，定义数据状态不需要写useState，直接修改属性即可刷新视图。
-</Alert>
+### 提供一种数据响应式的操作体验，定义数据状态不需要写 useState，直接修改属性即可刷新视图。
 
-```tsx
-import React from "react";
+```tsx | react
 import { useReactive } from "lyr-hooks";
 
 export default () => {
@@ -161,48 +136,41 @@ export default () => {
 };
 ```
 
-## create
-
-<Alert>
-  React 全局状态管理库
-</Alert>
+## create 全局状态管理库
 
 - ✨ 思路参看 [resy](https://github.sheincorp.cn/lsbFlying/resy)，感谢文木
 
+### 定义 store
+
+```ts
+import { create } from "lyr-hooks";
+
+export const store = create({
+  count: 1,
+  age: 1,
+  addCount() {
+    this.count++;
+  },
+});
+```
+
+### 使用 store
+
 ```tsx
-import React, { useState } from "react";
-import Demo1 from "./demo1";
-import Demo2 from "./demo2";
-import Demo3 from "./demo3";
+import { store } from "./store";
 
 export default () => {
-  const [show, setShow] = useState(true);
-  const [remove, setRemove] = useState(false);
+  const { age } = store.useSnapshot();
   return (
     <div>
+      {age}
       <button
-        onClick={() => {
-          setRemove(!remove);
+        onClick={async () => {
+          store.age += 1;
         }}
       >
-        模拟卸载
+        添加
       </button>
-      &nbsp;&nbsp;
-      <button
-        onClick={() => {
-          setShow(!show);
-        }}
-      >
-        模拟切换
-      </button>
-      {!remove && (
-        <>
-          <br />
-          <br />
-          {show ? <Demo1 /> : <Demo2 />}
-          <Demo3 />
-        </>
-      )}
     </div>
   );
 };
