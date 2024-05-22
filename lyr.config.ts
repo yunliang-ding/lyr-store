@@ -47,7 +47,7 @@ export default defineConfig({
       path: '/',
     },
     {
-      label: '组件',
+      label: '自定义 hooks',
       path: '/components',
       children: [
         {
@@ -65,10 +65,6 @@ export default defineConfig({
         {
           label: 'useReactive',
           path: '/components/use-reactive',
-        },
-        {
-          label: 'create',
-          path: '/components/create',
         },
       ],
     },

@@ -12,3 +12,10 @@
 /.prettierrc     
 tsconfig.json
 typings.d.ts
+
+lyr.config.ts
+rollup.config.mjs     
+/www
+/runtime
+/.theme
+/apis
