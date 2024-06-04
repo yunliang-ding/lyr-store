@@ -1,8 +1,8 @@
-## create 全局状态管理库
+# create 全局状态管理库
 
 - ✨ 思路参看 [resy](https://github.sheincorp.cn/lsbFlying/resy)，感谢文木
 
-### 定义 store
+## 定义 store
 
 ```ts
 import { create } from "lyr-hooks";
@@ -16,7 +16,7 @@ export const store = create({
 });
 ```
 
-### 使用 store
+## 使用 store
 
 ```tsx
 import { store } from "./store";

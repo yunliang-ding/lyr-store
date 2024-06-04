@@ -1,6 +1,6 @@
-## useFullscreen
+# useFullscreen
 
-### 管理 DOM 全屏的 Hook
+## 管理 DOM 全屏的 Hook
 
 ```tsx | react
 import { useRef } from "react";
