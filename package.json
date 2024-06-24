@@ -24,7 +24,7 @@
     "react": "17.0.2"
   },
   "devDependencies": {
-    "lyr-docs": "0.0.61"
+    "lyr-docs": "0.0.64"
   },
   "license": "MIT",
   "publishConfig": {
